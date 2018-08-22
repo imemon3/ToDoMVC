@@ -73,6 +73,7 @@ var app = app || {};
 
 		save: function (todoToSave, text) {
 			this.props.model.save(todoToSave, text);
+			console.log("This is text: " + text);
 			this.setState({editing: null});
 		},
 

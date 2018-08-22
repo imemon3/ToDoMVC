@@ -27,11 +27,34 @@ var app = app || {};
 
 		store: function (namespace, data) {
 			if (data) {
+				//call lambda function
+				//result = await fetch('https://wvollshn12.execute-api.us-east-1.amazonaws.com/develop/todo-storage');
 				return localStorage.setItem(namespace, JSON.stringify(data));
 			}
+			var invocation = new XMLHttpRequest();
+			invocation.open('GET', 'https://wvollshn12.execute-api.us-east-1.amazonaws.com/develop/todo-storage', false);
+			invocation.setRequestHeader('x-api-key', 'Wa4nfk69YGaKoApfaFKU9Lx7aumZB7e402nSKR38');
+			invocation.send(null);
 
-			var store = localStorage.getItem(namespace);
-			return (store && JSON.parse(store)) || [];
+			console.log(invocation.responseText);
+
+			return JSON.parse(invocation.responseText);
+
+			//var url = 'http://bar.other/resources/post-here/';
+			//var body = '<?xml version="1.0"?><person><name>Arun</name></person>';
+
+			// function callOtherDomain() {
+			// 	if (invocation) {
+			// 		invocation.open('POST', url, true);
+			// 		invocation.setRequestHeader('X-PINGOTHER', 'pingpong');
+			// 		invocation.setRequestHeader('Content-Type', 'application/xml');
+			// 		invocation.onreadystatechange = handler;
+			// 		invocation.send(body);
+			// 	}
+			// }
+			
+			//var store = localStorage.getItem(namespace);
+			//return (store && JSON.parse(store)) || [];
 		},
 
 		extend: function () {

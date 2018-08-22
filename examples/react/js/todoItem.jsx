@@ -14,6 +14,7 @@ var app = app || {};
 	app.TodoItem = React.createClass({
 		handleSubmit: function (event) {
 			var val = this.state.editText.trim();
+			console.log("This is val: " + val);
 			if (val) {
 				this.props.onSave(val);
 				this.setState({editText: val});
